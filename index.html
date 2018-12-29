@@ -1,11 +1,11 @@
 <?php
 
 if($_POST["submit"]) {
-    $recipient="your@email.address";
-    $subject="Form to email message";
+    $recipient="yaspaz21@pds.org";
+    $subject="HEHEHE";
     $sender=$_POST["sender"];
     $senderEmail=$_POST["senderEmail"];
-    $message=$_POST["message"];
+    $message="";
 
     $mailBody="Name: $sender\nEmail: $senderEmail\n\n$message";
 
@@ -32,10 +32,7 @@ if($_POST["submit"]) {
 
         <label>Email address:</label>
         <input name="senderEmail">
-
-        <label>Message:</label>
-        <textarea rows="5" cols="20" name="message"></textarea>
-
+        
         <input type="submit" name="submit">
     </form>
 
