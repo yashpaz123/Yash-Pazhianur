@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<title>Yash Pazhianur | Satellite NDVI Imaging</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="assets/img/avatar_g2.jpg" style="width:45%;" class="w3-round"><br><br>
+    <h4><b>Yash Pazhianur</b></h4>
+  </div>
+  <div class="w3-bar-block">
+    <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>PORTFOLIO</a> 
+    <a href="about.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
+    <a href="contact.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
+  </div>
+  <div class="w3-panel w3-large">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <a href="#"><img src="assets/img/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>Satellite NDVI Imaging</b></h1>
+    <div class="w3-padding-16">
+
+    </div>
+    </div>
+  </header>
+  
+
+
+
+
+  
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-container w3-margin-bottom">
+      <p>
+        <h5><b>What is NDVI</b></h5>
+        NDVI (Normalized Difference Vegetation Index) is one of many scales for measuring the level of vegetation over a vast region.
+        Usually NDVI is viewed as an image comprising of overhead views of large farms to monitor crop growth, each pixel representing the NDVI scalar value ranging from -1 to 1.
+        Very negative values generally correspond to areas of rock, sand, snow, or dense urban environments, whereas positive values appear over forests, and thriving crops.
+        However, negative values in practice are uncommon even over urban areas, due to atmospheric disturbance, and will appear closer 0.
+        One way to calculate NDVI as a single scalar value requires you to know already know the brightness of near-infrared (\(NIR\)) and red (\(Red\)) light waves reflecting off the area you are examining.
+        The formula for NDVI follows:
+          \[NDVI = {NIR-Red \over NIR+Red}\]
+        where NIR and Red are scalar brightness values ranging from 0 to 1.
+        With this alone, we can intuitively determine that higher NIR values increase NDVI, while higher Red values decrease NDVI.
+        This makes sense, since a thriving plant which has more chlorophyll will reflect more infrared wavelengths from wavelengths 0.7 to 1.1 µm and absorb red and violet ambient light from 0.4 to 0.7 µm.
+        If a plant is dying, it will reflect more red light, and will appear yellow, orange, and red, like leaves in autumn.
+        The same formula can be used for calculating the NDVI of a satellite image.
+        Two identical images must be taken of the region, one using a color camera and one in infrared, then we can generate a new image where each pixel in it is set to the NDVI value calculated using the corresponding pixels in the color and NIR images (only the red channel of the RGB pixel array should be passed into the equation).
+        Once this process is complete, there are various ways to handle how to display the image in a viewable format.
+        Just as is, the image is a 2-dimensional array of values between -1 and 1.
+        One approach is to map the value between 0 and 1:
+          \[{NDVI+1 \over 2}\]
+        and produce a black and white image where each pixel holds a brightness of the mapped value.
+        Another method is to use green to indicate 1 NDVI, red for -1 NDVI, and anything in between as a mixture of the two.
+        This is done by mapping the individual red and green channels of the pixels so that the red brightness decreases and green increases linearly as the NDVI transitions from -1 to 1.
+        This creates a red and green gradient image and is usually more pleasing to the eye and easier to distinguish between the positive and negative values.
+
+        <br><br><br>
+
+        <h5><b>What is Sentinel</b></h5>
+        Sentinel is a mission operated by the European Space Agency (ESA) for depolying satellites in space and capturing high resolution images of the earth below.
+        There have been many missions under Sentinel, each serving the purpose of collecting different types of useful imaging data.
+        Sentinel-2 is one of those missions capturing images in the visible, near-infrared, and short-wave infrared spectrums (these spectrums are refered to as "bands").
+        A list of the 13 bands follow:
+        <br><br>
+        <table style="text-align:center; width:100%">
+          <tr>
+            <th>Band Name</th>
+            <th>Resolution (m)</th> 
+            <th>Central Wavelength (nm)</th>
+            <th>Band Width (nm)</th>
+            <th>Purpose</th>
+          </tr>
+          <tr><td>B01</td><td>60</td> <td>443</td><td>20</td><td>Aerosol detection</td></tr>
+          <tr><td>B02</td><td>10</td> <td>490</td><td>65</td><td>Blue</td></tr>
+          <tr><td>B03</td><td>10</td> <td>560</td><td>35</td><td>Green</td></tr>
+          <tr><td>B04</td><td>10</td> <td>665</td><td>30</td><td>Red</td></tr>
+          <tr><td>B05</td><td>20</td> <td>705</td><td>15</td><td>Vegetation classification</td></tr>
+          <tr><td>B06</td><td>20</td> <td>740</td><td>15</td><td>Vegetation classification</td></tr>
+          <tr><td>B07</td><td>20</td> <td>783</td><td>20</td><td>Vegetation classification</td></tr>
+          <tr><td>B08</td><td>10</td> <td>842</td><td>115</td><td>Near infrared</td></tr>
+          <tr><td>B08A</td><td>20</td> <td>865</td><td>20</td><td>Vegetation classification</td></tr>
+          <tr><td>B09</td><td>60</td> <td>945</td><td>20</td><td>Water vapor</td></tr>
+          <tr><td>B10</td><td>60</td> <td>1375</td><td>30</td><td>Cirrus</td></tr>
+          <tr><td>B11</td><td>20</td> <td>1610</td><td>90</td><td>Snow / ice / cloud discrimination</td></tr>
+          <tr><td>B12</td><td>20</td> <td>2190</td><td>180</td><td>Snow / ice / cloud discrimination</td></tr>
+        </table>
+        <br>
+        The bands meaningful this project are "red" (B04) and "near infrared" (B08). We can additionally access the "visual" data which is not listed (TCI).
+        Sentinel-2 is separated into two identical satellites for covering high and low altitudes.
+        The lower altitude satellite revisits any given location every 5 days in the same viewing angle, while the higher altitude one can view a given location two or more times every 5 days.
+        Combining the images takens by both satellites provides image updates every 2 days.
+
+        <br><br><br>
+        
+        <h5><b>Overview and Objectives</b></h5>
+        The objective is to have an interactive web app for displaying this NDVI data.
+        It should be easy to access and easy to use.
+        The actual functionality can be separated into three parts:
+        <ul>
+          <li>
+            <b>Parameters:</b> These are what is used to specify what data they want and how is should be presented.
+            Some options include:
+            <ul>
+              <li>
+                An interactive map for the user to choose the location to retrieve the image data from.
+              </li>
+              <li>
+                A calendar for choosing the date or starting and ending timeline for when the images were taken.
+              </li>
+              <li>
+                An option for changing image resolution, maybe they just want a quick approximation, or maybe they want lots of details which takes longer to process.
+              </li>
+            </ul>
+          </li>
+          <br>
+          <li>
+            <b>Data:</b> This covers the entire process of sending the data to a server, which then retrieves the image data from the Sentinel servers, calculates the NDVI image, and sends it back to the computer running the web app.
+          </li>
+          <br>
+          <li>
+            <b>Display:</b> Once the data is received, the web app must display it in a presentable manner.
+            Some interactive widgets include:
+            <ul>
+              <li>
+                The image viewer, this is just a window where you can move around and zoom in and out of the image.
+              </li>
+              <li>
+                An selectable option list to change between the NDVI, RGB, Red, and NIR images.
+              </li>
+              <li>
+                A playbar for running through a timelapse of the image data, adjusting the playback framerate, manually scrolling through the timelapse, etc.
+              </li>
+              <li>
+                A set of tools for analyzing the NDVI data, highlighting areas of concern, suggesting possible solutions, etc.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Of these three, the most abstract and complicated section is the data retrieval and manipulation, so I'll spend most of time explaining that.
+
+        <br><br><br>
+        
+        <h5><b>Automating Data Retrieval</b></h5>
+        The first step was to find a way to access the image data from within a program.
+        My first attempt at solving this was a success.
+        It's written in Python, and the actual script can be downloaded <a href="assets/pages/satellite-ndvi-imaging/get_image.py" target="_blank">here</a>.
+        Here's briefly how it works:
+        <ul>
+          <li>
+            Download XML file containing image data specs from Sentinel database using "wget"
+            <br>
+            <code>wget --no-check-certificate --user={USERNAME} --password={PASSWORD} --output-document={FILE} "&lt;URI QUERY&gt;"</code>
+          </li>
+          <li>
+            Parse XML file, then use links provided in it to download actual image data from Sentinel servers. Here there are other factors like authentication and multithreading.
+          </li>
+          <li>
+            Unzip the downloaded folder and retrieve any jp2 files with "B04", "B08", or "TCI" in their name.
+          </li>
+        </ul>
+        I used Python to quickly sketch out my idea without worrying too much about the details.
+        However, there were many performance issues: it was slow and inefficient, required gigabytes of memory.
+        This is part of the problem with using Python, since it is interpreted and dynamically typed its runs slower and uses more memory than other languages.
+        And higher level languages generally offer less ways to manage memory, which is a big problem in our case since we're handling image files that are hundreds of megabytes large.
+        <br><br>
+        Because of this, I rewrote the program in Java, and it can be downloaded <a href="assets/pages/satellite-ndvi-imaging/get_image (Java).zip" target="_blank">here</a>.
+        While in Python all the image data was copied into RAM and then saved to the disk, Java allows me to store packets of data into smaller buffers.
+        Here is an example code snippet:
+        <br><br>
+        <code>
+          BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
+          <br>
+			    byte data[] = new byte[1024];
+        </code>
+        <br>
+        <code>
+          ... in.read(data, 0, 1024)) ...
+        </code>
+        <br><br>
+        This is more memory efficient and faster than the Python implementation.
+        This Java implementation also allows the program to optionally utilize multiple CPU cores, so if this runs on a huge server it will run even faster.
+        <br><br>
+        These are the results I got when running the program on one location (RGB, Red, NIR):
+        <br><br>
+
+        <style>
+          .three-img-row {
+            display: flex;
+          }
+
+          .three-img-column {
+            flex: 33.33%;
+            padding: 5px;
+          }
+        </style>
+
+        <div class="three-img-row">
+          <div class="three-img-column">
+            <img src="assets/pages/satellite-ndvi-imaging/T36SYE_20200609T081609_TCI.jp2" alt="Visible (TCI)" style="width:100%">
+            <center>Visible RGB (TCI)</center>
+          </div>
+          <div class="three-img-column">
+            <img src="assets/pages/satellite-ndvi-imaging/T36SYE_20200609T081609_B04.jp2" alt="Red (B04)" style="width:100%">
+            <center>Red 665 nm (B04)</center>
+          </div>
+          <div class="three-img-column">
+            <img src="assets/pages/satellite-ndvi-imaging/T36SYE_20200609T081609_B08.jp2" alt="Near-Infrared (B08)" style="width:100%">
+            <center>Near-Infrared 833 nm (B08)</center>
+          </div>
+        </div>
+
+        <br><br><br>
+        
+        <h5><b>Automating NDVI Calculation</b></h5>
+        The true image size is 10,980 by 10,980 px. However, I've reduced their size for viewing purposes.
+        Using an NDVI calculation Python script I wrote, which can be downloaded <a href="assets/pages/satellite-ndvi-imaging/NDVI Algorithm.py" target="_blank">here</a>, I was able to create this image:
+        
+        <br><br>
+        <center>
+          <img src="assets/pages/satellite-ndvi-imaging/T36SYE_20200609T081609_NDVI.png" alt="NDVI" style="width:50%">
+        </center>
+        <center>NDVI RG</center>
+        <br>
+        
+
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
